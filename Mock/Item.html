@@ -10,16 +10,21 @@
 	href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
 	integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="css.css">
 <title>Item</title>
 </head>
 <body>
-	<jsp:include page="/mywenbsite_Mock/Header.html" />ヘッダーが入る
+	<jsp:include page="/mywenbsite_Mock/Header.jsp" />ヘッダーが入る
 	<br>
 	<br>
 	<div class="container">
+		<div class="text-right">
+			<a class="btn btn-primary"
+				href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/Itemupdate.html"
+				role="button">変更</a>
+		</div>
 		<h2 class="text-center">商品名</h2>
-		<br>
-		<br>
+		<br> <br>
 		<div class="row">
 			<div class="col">
 				<img src="..." alt="..." class="img-thumbnail">
@@ -52,7 +57,40 @@
 		<br>
 		<p class="text-center">商品詳細</p>
 		<a class="btn btn-outline-danger btn-sm" href="#" role="button"><i
-			class="far fa-heart"></i>0</a>
+			class="far fa-heart"></i>0</a> <br> <br>
+		<div class="scroll">
+			<table class="table">
+				<thead>
+				<tbody>
+					<tr>
+						<th scope="row">ユーザー名</th>
+						<td>コメント</td>
+						<td>投稿時間</td>
+					</tr>
+					<tr>
+						<th scope="row">ユーザー名</th>
+						<td>コメント</td>
+						<td>投稿時間</td>
+					</tr>
+					<tr>
+						<th scope="row">ユーザー名</th>
+						<td>コメント</td>
+						<td>投稿時間</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<br> <label for="comment">コメント</label>
+		<textarea class="form-control" id="comment" rows="3"></textarea>
+		<br>
+		<button type="submit" class="btn-block">コメントする</button>
+		<br>
+		<div class="text-right">
+			<a
+				href="#">商品を削除
+			</a>
+		</div>
+		<br> <br>
 	</div>
 </body>
 </html>
