@@ -12,7 +12,7 @@
 
 </head>
 <body>
-	<jsp:include page="/mywenbsite_Mock/Header.jsp" />ヘッダーが入る
+	<jsp:include page="/WEB-INF/jsp/Header.jsp"/>
 	<br>
 	<br>
 	<div class="container">

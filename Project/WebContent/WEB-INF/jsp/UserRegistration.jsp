@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +21,9 @@
 			<i class="fas fa-cube"></i>フリマ
 		</h1>
 		<br> <br>
+		<c:if test="${errMsg != null}">
+			<div class="alert alert-danger" role="alert">${errMsg}</div>
+		</c:if>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -29,13 +33,14 @@
 			<tbody>
 				<tr>
 					<th scope="row"><br>
-						<form>
+						<form action="UserRegistrationServlet" method="post">
 							<div class="form-group">
 								<div class="row">
 									<div class="col"></div>
 									<div class="col-10">
 										<label for="login_id">ログインID</label> <input type="text"
-											class="form-control" id="login_id" placeholder="LoginID">
+											class="form-control" id="login_id" name="login_id"
+											placeholder="LoginID">
 									</div>
 									<div class="col"></div>
 								</div>
@@ -45,7 +50,8 @@
 									<div class="col"></div>
 									<div class="col-10">
 										<label for="password">パスワード</label> <input type="password"
-											class="form-control" id="password" placeholder="Password">
+											class="form-control" id="password" name="password"
+											placeholder="Password">
 									</div>
 									<div class="col"></div>
 								</div>
@@ -54,8 +60,9 @@
 								<div class="row">
 									<div class="col"></div>
 									<div class="col-10">
-										<label for="passwordCon">パスワード(確認)</label> <input type="password"
-											class="form-control" id="passwordCon" placeholder="Password">
+										<label for="passwordCon">パスワード(確認)</label> <input
+											type="password" class="form-control" id="passwordCon"
+											name="passwordCon" placeholder="Password">
 									</div>
 									<div class="col"></div>
 								</div>
@@ -65,7 +72,8 @@
 									<div class="col"></div>
 									<div class="col-10">
 										<label for="name">ユーザー名</label> <input type="text"
-											class="form-control" id="name" placeholder="UserName">
+											class="form-control" id="name" name="name"
+											placeholder="UserName">
 									</div>
 									<div class="col"></div>
 								</div>
@@ -75,7 +83,8 @@
 									<div class="col"></div>
 									<div class="col-10">
 										<label for="address">住所</label> <input type="text"
-											class="form-control" id="address" placeholder="address">
+											class="form-control" id="address" name="address"
+											placeholder="address">
 									</div>
 									<div class="col"></div>
 								</div>
