@@ -22,8 +22,8 @@ public class UserDao {
 		try {
 
 			con = DBManager.getConnection();
-			String sql = "insert into user(login_id, password, name, addres,create_date)"
-					+ "VALUES(?.?,?.?,CURRENT_TIMESTAMP)";
+			String sql = "insert into user(login_id, password, name, address,create_date)"
+					+ "VALUES(?,?,?,?,now())";
 
 			PreparedStatement ps = con.prepareStatement(sql);
 
@@ -65,6 +65,7 @@ public class UserDao {
 			ps.setString(1, login_id);
 
 			ResultSet rs = ps.executeQuery();
+			System.out.println("checkOK!");
 
 			if(!rs.next()) {
 				return null;
@@ -89,6 +90,51 @@ public class UserDao {
 		}
 	}
 
+	public static UserDataBeans login(String login_id,String password)throws SQLException {
+
+		Connection con = null;
+
+		try {
+
+			con = DBManager.getConnection();
+			String sql = "SELECT * FROM user WHERE login_id = ? AND password = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			String pass = md5(password);
+
+			ps.setString(1, login_id);
+			ps.setString(2, pass);
+
+			ResultSet rs = ps.executeQuery();
+			System.out.println("loginOK!");
+
+			if(!rs.next()) {
+				return null;
+			}
+
+			int iddata = rs.getInt("id");
+			String loginiddata = rs.getString("login_id");
+			String namedata = rs.getString("name");
+
+			return new UserDataBeans(iddata,loginiddata,namedata);
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+					return null;
+				}
+			}
+		}
+
+	}
 
 
 	 public static String md5(String password){

@@ -12,28 +12,47 @@
 
 </head>
 <body>
-	<jsp:include page="/WEB-INF/jsp/Header.jsp"/>
+
+	<%
+		boolean isLogin = session.getAttribute("isLogin") != null ? (boolean) session.getAttribute("isLogin")
+				: false;
+	%>
+	<%
+		if (isLogin) {
+	%>
+	<jsp:include page="/WEB-INF/jsp/Header2.jsp" />
+	<%
+		} else {
+	%>
+	<jsp:include page="/WEB-INF/jsp/Header.jsp" />
+	<%
+		}
+	%>
+
 	<br>
 	<br>
 	<div class="container">
 		<div class="card-deck">
-			<a href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/Item.html"
-			 class="card"> <img class="card-img-top"
-				src=".../100px200/" alt="Card image cap">
+			<a
+				href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/Item.html"
+				class="card"> <img class="card-img-top" src=".../100px200/"
+				alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">商品名</h5>
 					<p class="card-text">¥〇〇〇</p>
 				</div>
-			</a> <a href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/Item.html"
-			 class="card"> <img class="card-img-top"
-				src=".../100px200/" alt="Card image cap">
+			</a> <a
+				href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/Item.html"
+				class="card"> <img class="card-img-top" src=".../100px200/"
+				alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">商品名</h5>
 					<p class="card-text">¥〇〇〇</p>
 				</div>
-			</a> <a href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/Item.html"
-			 class="card"> <img class="card-img-top"
-				src=".../100px200/" alt="Card image cap">
+			</a> <a
+				href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/Item.html"
+				class="card"> <img class="card-img-top" src=".../100px200/"
+				alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">商品名</h5>
 					<p class="card-text">¥〇〇〇</p>

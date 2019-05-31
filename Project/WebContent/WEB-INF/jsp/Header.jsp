@@ -39,11 +39,11 @@
 			<div class="col-3 text-right">
 				<a
 				class="btn btn-outline-danger"
-				 href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/Login.html?"
+				 href="LoginServlet"
 				  role="button">ログイン</a>
 				<a
 				 class="btn btn-outline-info"
-				  href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/UserRegistration.html"
+				  href="UserRegistrationServlet"
 				   role="button">新規登録</a>
 			</div>
 		</div>

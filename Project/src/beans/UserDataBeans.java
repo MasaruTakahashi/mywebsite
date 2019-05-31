@@ -23,6 +23,10 @@ public class UserDataBeans implements Serializable {
 	}
 
 
+	public UserDataBeans(int iddata, String loginiddata, String namedata) {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
 	public int getId() {
 		return id;
 	}

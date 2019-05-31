@@ -58,15 +58,15 @@ public class UserRegistrationServlet extends HttpServlet {
 		try {
 
 			if (UserDao.checkLogin_id(login_id) != null) {
-				request.setAttribute("errMsg", "入力された内容は正しくありません。");
+				request.setAttribute("errMsg", "他のユーザーが使用しています。");
 
 				request.getRequestDispatcher("/WEB-INF/jsp/UserRegistration.jsp").forward(request, response);
 			} else if (!password.equals(passwordCon)) {
-				request.setAttribute("errMsg", "入力された内容は正しくありません。");
+				request.setAttribute("errMsg", "パスワードと確認が一致していません。");
 
 				request.getRequestDispatcher("/WEB-INF/jsp/UserRegistration.jsp").forward(request, response);
 			} else if (login_id.equals("") || password.equals("") || name.equals("") || address.equals("")) {
-				request.setAttribute("errMsg", "入力された内容は正しくありません。");
+				request.setAttribute("errMsg", "全て入力してください。");
 
 				request.getRequestDispatcher("/WEB-INF/jsp/UserRegistration.jsp").forward(request, response);
 			} else {
