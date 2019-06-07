@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,11 +21,14 @@
 	<br>
 	<br>
 	<div class="container">
+	<c:if test="${userinfo.id == item.userid}">
 		<div class="text-right">
 			<a class="btn btn-primary"
 				href="#"
 				role="button">変更</a>
 		</div>
+		 </c:if>
+
 		<h2 class="text-center">商品名</h2>
 		<br> <br>
 		<div class="row">
@@ -90,11 +93,13 @@
 		<br>
 		<button type="submit" class="btn-block">コメントする</button>
 		<br>
+		<c:if test="${userinfo.id == item.userid}">
 		<div class="text-right">
 			<a
 				href="#">
 				商品を削除 </a>
 		</div>
+		</c:if>
 		<br> <br>
 	</div>
 </body>

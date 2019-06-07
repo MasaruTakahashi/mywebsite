@@ -136,6 +136,51 @@ public class UserDao {
 
 	}
 
+	public static UserDataBeans getuser(int id)throws SQLException{
+
+		Connection con = null;
+		UserDataBeans udb = null;
+		try {
+
+			con = DBManager.getConnection();
+			String sql = "SELECT * FROM user WHERE id = ?";
+
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setInt(1,id);
+
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next()) {
+				int Id = rs.getInt("id");
+				String name = rs.getString("name");
+				int point = rs.getInt("point");
+				String address = rs.getString("address");
+				String detail = rs.getString("detail");
+
+				udb = new UserDataBeans(Id,name,point,address,detail);
+
+			}
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+
+		} finally {
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+
+				}
+			}
+		}
+		return udb;
+	}
+
 
 	 public static String md5(String password){
 			//ハッシュを生成したい元の文字列

@@ -12,8 +12,8 @@
 	href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
 	integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="/css/css.css">
-<title>Header</title>
+<link rel="stylesheet" href="css.css">
+<title>Header2</title>
 </head>
 <body>
 	<div class="container">
@@ -34,19 +34,39 @@
 				</div>
 			</div>
 		</div>
+		<%
+			boolean isLogin = session.getAttribute("isLogin") != null ? (boolean) session.getAttribute("isLogin")
+					: false;
+		%>
+		<%
+			if (isLogin) {
+		%>
+		<div class="row">
+			<div class="col-8"></div>
+			<div class="col-4 text-right">
+				<a class="btn btn-outline-danger"
+					href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/GoodList.html"
+					role="button">いいね<i class="far fa-heart"></i></a> <a
+					class="btn btn-outline-warning"
+					href="UserpageServlet?id=${userinfo.id}"
+					role="button">マイページ</a> <a class="btn btn-outline-info" href="LogoutServlet"
+					role="button">ログアウト</a>
+			</div>
+		</div>
+		<%
+			} else {
+		%>
 		<div class="row">
 			<div class="col-9"></div>
 			<div class="col-3 text-right">
-				<a
-				class="btn btn-outline-danger"
-				 href="LoginServlet"
-				  role="button">ログイン</a>
-				<a
-				 class="btn btn-outline-info"
-				  href="UserRegistrationServlet"
-				   role="button">新規登録</a>
+				<a class="btn btn-outline-danger" href="LoginServlet" role="button">ログイン</a>
+				<a class="btn btn-outline-info" href="UserRegistrationServlet"
+					role="button">新規登録</a>
 			</div>
 		</div>
+		<%
+			}
+		%>
 	</div>
 </body>
 </html>

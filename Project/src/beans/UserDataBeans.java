@@ -18,13 +18,22 @@ public class UserDataBeans implements Serializable {
 
 	}
 
-	public UserDataBeans(String string) {
-		// TODO 自動生成されたコンストラクター・スタブ
+	public UserDataBeans(String login_id) {
+		this.login_id = login_id;
 	}
 
+	public UserDataBeans(int id, String login_id, String name) {
+		this.id = id;
+		this.login_id = login_id;
+		this.name = name;
+	}
 
-	public UserDataBeans(int iddata, String loginiddata, String namedata) {
-		// TODO 自動生成されたコンストラクター・スタブ
+	public UserDataBeans(int id, String name, int point, String address, String detail) {
+		this.id = id;
+		this.name = name;
+		this.point = point;
+		this.address = address;
+		this.detail = detail;
 	}
 
 	public int getId() {

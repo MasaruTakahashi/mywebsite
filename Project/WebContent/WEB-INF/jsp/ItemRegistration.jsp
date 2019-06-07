@@ -11,7 +11,7 @@
 <title>ItemRegistration</title>
 </head>
 <body>
-	<jsp:include page="/mywenbsite_Mock/Header.jsp" />ヘッダーが入る
+	<jsp:include page="/WEB-INF/jsp/Header.jsp" />
 	<br>
 	<br>
 	<div class="container">
@@ -73,13 +73,13 @@
 				<div class="col-sm-10">
 					<div class="form-check">
 						<input class="form-check-input" type="radio" name="delivery"
-							id="delivery1" value="1"> <label
-							class="form-check-label" for="delivery1"> 送料込み </label>
+							id="delivery1" value="1"> <label class="form-check-label"
+							for="delivery1"> 送料込み </label>
 					</div>
 					<div class="form-check">
 						<input class="form-check-input" type="radio" name="delivery"
-							id="delivery2" value="2"> <label
-							class="form-check-label" for="delivery2"> 着払い </label>
+							id="delivery2" value="2"> <label class="form-check-label"
+							for="delivery2"> 着払い </label>
 					</div>
 				</div>
 			</div>

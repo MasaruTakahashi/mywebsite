@@ -8,22 +8,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import beans.ItemDataBeans;
 import beans.UserDataBeans;
+import dao.ItemDao;
 import dao.UserDao;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class UserpageServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/UserpageServlet")
+public class UserpageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public UserpageServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,37 +33,31 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id = request.getParameter("id");
 
-		request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp").forward(request, response);
+		try {
+			UserDataBeans udb = UserDao.getuser(Integer.parseInt(id));
+			request.setAttribute("user", udb);
+		} catch (NumberFormatException | SQLException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			ItemDataBeans idb = ItemDao.itemcontents(Integer.parseInt(id));
+			request.setAttribute("item",idb);
+		} catch (NumberFormatException | SQLException e) {
+			e.printStackTrace();
+		}
+
+		request.getRequestDispatcher("/WEB-INF/jsp/Userpage.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.setCharacterEncoding("UTF-8");
-
-		String login_id = request.getParameter("login_id");
-		String password = request.getParameter("password");
-
-		try {
-		UserDataBeans udb = UserDao.login(login_id, password);
-
-
-			if(udb == null) {
-				request.setAttribute("errMsg", "ログインIDまたはパスワードが間違っています。");
-				request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp").forward(request, response);
-			}
-
-			HttpSession session = request.getSession();
-			session.setAttribute("isLogin", true);
-			session.setAttribute("userinfo", udb);
-			response.sendRedirect("TopServlet");
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
