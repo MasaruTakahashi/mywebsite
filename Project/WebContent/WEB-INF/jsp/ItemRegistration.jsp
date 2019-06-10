@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,13 +17,17 @@
 	<br>
 	<div class="container">
 		<br> <br>
+		<c:if test="${errMsg != null}">
+			<div class="alert alert-danger" role="alert">${errMsg}</div>
+		</c:if>
 
+<form action="ItemRegistrationServlet" method="post">
 		<div class="form-group">
 			<label for="itemphoto">画像</label> <input type="file"
-				class="form-control-file" id="itemphoto">
+				class="form-control-file" name="photo" id="itemphoto">
 		</div>
 		<div class="form-group row">
-			<input type="hidden" name="user_id" value="user_id">
+			<input type="hidden" name="user_id" value="${userinfo.id}">
 		</div>
 		<div class="form-group row">
 			<input type="hidden" name="quantity" value="1">
@@ -30,13 +35,13 @@
 		<div class="form-group row">
 			<label for="itemname" class="col-sm-2 col-form-label">商品名</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="itemname">
+				<input type="text" class="form-control" name="name" id="itemname">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="price" class="col-sm-2 col-form-label">値段</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="price">
+				<input type="text" class="form-control" name="price" id="price">
 			</div>
 		</div>
 		<fieldset class="form-group">
@@ -87,7 +92,7 @@
 		<div class="form-group row">
 			<label for="itemDetails" class="col-sm-2 col-form-label">商品詳細</label>
 			<div class="col-sm-10">
-				<textarea class="form-control" id="itemDetails" rows="3"></textarea>
+				<textarea class="form-control" name="itemDetail" id="itemDetail" rows="3"></textarea>
 			</div>
 		</div>
 
@@ -96,6 +101,7 @@
 				<button type="submit" class="btn btn-primary btn-block">出品</button>
 			</div>
 		</div>
+		</form>
 	</div>
 </body>
 </html>

@@ -9,6 +9,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
+	<link rel="stylesheet" href="css/css.css">
 <title>Userpage</title>
 </head>
 <body>
@@ -20,10 +21,10 @@
 				<a class="btn btn-warning" href="UserListServlet" role="button">ユーザー一覧</a>
 			</c:if>
 			<c:if test="${userinfo.id == user.id}">
-			<a class="btn btn-primary"
-				href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/Userupdate.html?"
-				role="button">変更</a>
-				</c:if>
+				<a class="btn btn-primary"
+					href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/Userupdate.html?"
+					role="button">変更</a>
+			</c:if>
 		</div>
 		<p class="text-center">${user.name}</p>
 
@@ -46,43 +47,32 @@
 			<p class="text-center">${user.detail}</p>
 		</c:if>
 		<br>
-		<div class="row">
-			<div class="col"></div>
-			<div class="col-5 text-center">
-				<a class="btn btn-outline-danger btn-block btn-lg"
-					href="ItemRegistrationServlet"
-					role="button">出品する</a>
+		<c:if test="${userinfo.id == user.id}">
+			<div class="row">
+				<div class="col"></div>
+				<div class="col-5 text-center">
+					<a class="btn btn-outline-danger btn-block btn-lg"
+						href="ItemRegistrationServlet?id=${userinfo.id}" role="button">出品する</a>
+				</div>
+				<div class="col"></div>
 			</div>
-			<div class="col"></div>
-		</div>
+		</c:if>
 		<br> <br>
 
 		<div class="card-deck">
-			<a
-				href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/Item.html"
-				class="card"> <img class="card-img-top" src=".../100px200/"
-				alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">商品名</h5>
-					<p class="card-text">¥〇〇〇</p>
-				</div>
-			</a> <a
-				href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/Item.html"
-				class="card"> <img class="card-img-top" src=".../100px200/"
-				alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">商品名</h5>
-					<p class="card-text">¥〇〇〇</p>
-				</div>
-			</a> <a
-				href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/Item.html"
-				class="card"> <img class="card-img-top" src=".../100px200/"
-				alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">商品名</h5>
-					<p class="card-text">¥〇〇〇</p>
+			<c:forEach var="item" items="${itemlist}">
+			<div class="cardsize">
+			<a href="ItemServlet?id=${item.id}">
+				<div class="card">
+					<img class="card-img-top" src="${item.photo}">
+					<div class="card-body">
+							<h5 class="card-title">${item.name}</h5>
+							<p class="card-text">¥${item.price}</p>
+					</div>
 				</div>
 			</a>
+			</div>
+			</c:forEach>
 		</div>
 
 	</div>

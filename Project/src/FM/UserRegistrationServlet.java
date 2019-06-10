@@ -76,7 +76,6 @@ public class UserRegistrationServlet extends HttpServlet {
 			}
 
 		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
 

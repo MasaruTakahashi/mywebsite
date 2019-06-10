@@ -2,6 +2,7 @@ package FM;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,8 +44,8 @@ public class UserpageServlet extends HttpServlet {
 		}
 
 		try {
-			ItemDataBeans idb = ItemDao.itemcontents(Integer.parseInt(id));
-			request.setAttribute("item",idb);
+			ArrayList<ItemDataBeans> idb = ItemDao.itemcontents(Integer.parseInt(id));
+			request.setAttribute("itemlist",idb);
 		} catch (NumberFormatException | SQLException e) {
 			e.printStackTrace();
 		}
