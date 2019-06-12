@@ -21,48 +21,45 @@
 	<br>
 	<br>
 	<div class="container">
-	<c:if test="${userinfo.id == item.userid}">
-		<div class="text-right">
-			<a class="btn btn-primary"
-				href="#"
-				role="button">変更</a>
-		</div>
-		 </c:if>
+		<c:if test="${userinfo.id == item.user_id}">
+			<div class="text-right">
+				<a class="btn btn-primary" href="#" role="button">変更</a>
+			</div>
+		</c:if>
 
-		<h2 class="text-center">商品名</h2>
+		<h2 class="text-center">${item.name}</h2>
 		<br> <br>
 		<div class="row">
 			<div class="col">
-				<img src="..." alt="..." class="img-thumbnail">
+				<img src="${item.photo }" alt="${item.photo }" class="img-thumbnail">
 			</div>
 			<div class="col">
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
 							<th>出品者</th>
-							<td>Mark</td>
+							<td>${item.userName}</td>
 						</tr>
 						<tr>
 							<th>商品の状態</th>
-							<td>新品</td>
+							<td>${item.item_stateDetail}</td>
 						</tr>
 						<tr>
 							<th>配送料の負担</th>
-							<td>代引き</td>
+							<td>${item.deliveryDetail}</td>
 						</tr>
 						<tr>
 							<th>発送元</th>
-							<td>埼玉県</td>
+							<td>${item.userAddress}</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
-		<h1 class="text-center">¥〇〇〇</h1>
-		<a class="btn btn-danger btn-block btn-lg"
-			href="#"
-			role="button">購入画面に進む</a> <br>
-		<p class="text-center">商品詳細</p>
+		<h1 class="text-center">¥${item.price }</h1>
+		<a class="btn btn-danger btn-block btn-lg" href="#" role="button">購入画面に進む</a>
+		<br>
+		<p class="text-center">${item.detail }</p>
 		<a class="btn btn-outline-danger btn-sm" href="#" role="button"><i
 			class="far fa-heart"></i>0</a> <a class="btn btn-outline-info btn-sm"
 			href="#" role="button">通報する</a> <br> <br>
@@ -93,12 +90,10 @@
 		<br>
 		<button type="submit" class="btn-block">コメントする</button>
 		<br>
-		<c:if test="${userinfo.id == item.userid}">
-		<div class="text-right">
-			<a
-				href="#">
-				商品を削除 </a>
-		</div>
+		<c:if test="${userinfo.id == item.user_id}">
+			<div class="text-right">
+				<a href="#"> 商品を削除 </a>
+			</div>
 		</c:if>
 		<br> <br>
 	</div>

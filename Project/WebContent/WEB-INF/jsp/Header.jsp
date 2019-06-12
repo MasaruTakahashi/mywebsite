@@ -13,14 +13,15 @@
 	integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css.css">
-<title>Header2</title>
+<title>Header</title>
 </head>
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-2  header-font">
-				<i class="fas fa-cube"></i>フリマ
-			</div>
+
+			<a href="TopServlet" class="col-2  header-font"> <i
+				class="fas fa-cube"></i>フリマ
+			</a>
 			<div class="col-10 text-right">
 				<div class="input-group mb-3">
 					<input type="text" class="form-control"
@@ -48,9 +49,8 @@
 					href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/GoodList.html"
 					role="button">いいね<i class="far fa-heart"></i></a> <a
 					class="btn btn-outline-warning"
-					href="UserpageServlet?id=${userinfo.id}"
-					role="button">マイページ</a> <a class="btn btn-outline-info" href="LogoutServlet"
-					role="button">ログアウト</a>
+					href="UserpageServlet?id=${userinfo.id}" role="button">マイページ</a> <a
+					class="btn btn-outline-info" href="LogoutServlet" role="button">ログアウト</a>
 			</div>
 		</div>
 		<%

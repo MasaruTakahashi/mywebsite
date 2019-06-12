@@ -15,6 +15,29 @@ public class ItemDataBeans {
 	private int item_num;
 	private Date create_date;
 
+	private String userName;
+	private String userAddress;
+
+	private String item_stateDetail;
+
+	private String deliveryDetail;
+
+	public String getItem_stateDetail() {
+		return item_stateDetail;
+	}
+
+	public void setItem_stateDetail(String item_stateDetail) {
+		this.item_stateDetail = item_stateDetail;
+	}
+
+	public String getDeliveryDetail() {
+		return deliveryDetail;
+	}
+
+	public void setDeliveryDetail(String deliveryDetail) {
+		this.deliveryDetail = deliveryDetail;
+	}
+
 	public ItemDataBeans() {
 
 	}
@@ -24,6 +47,19 @@ public class ItemDataBeans {
 		this.photo = photo;
 		this.name = name;
 		this.price = price;
+	}
+
+	public ItemDataBeans(String photo, String name, int price, String item_stateDetail, String deliveryDetail, String detail,
+			String userName, String userAddress, int user_id) {
+		this.photo = photo;
+		this.name = name;
+		this.price = price;
+		this.item_stateDetail = item_stateDetail;
+		this.deliveryDetail = deliveryDetail;
+		this.detail = detail;
+		this.userName = userName;
+		this.userAddress = userAddress;
+		this.user_id = user_id;
 	}
 
 	public int getId() {
@@ -85,6 +121,22 @@ public class ItemDataBeans {
 	}
 	public void setCreate_date(Date create_date) {
 		this.create_date = create_date;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserAddress() {
+		return userAddress;
+	}
+
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
 	}
 
 }

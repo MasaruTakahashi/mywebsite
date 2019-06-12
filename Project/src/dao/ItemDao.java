@@ -5,10 +5,51 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import beans.ItemDataBeans;
 
 public class ItemDao {
+
+	public static List<ItemDataBeans> findall()throws SQLException{
+		Connection con = null;
+		List<ItemDataBeans> itemlist = new ArrayList<ItemDataBeans>();
+
+		try {
+			con = DBManager.getConnection();
+			String sql = "SELECT * FROM item";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+					while(rs.next()) {
+						ItemDataBeans idb = new ItemDataBeans();
+						idb.setId(rs.getInt("id"));
+						idb.setPhoto(rs.getString("photo"));
+						idb.setName(rs.getString("name"));
+						idb.setPrice(rs.getInt("price"));
+
+						itemlist.add(idb);
+					}
+
+					return itemlist;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+
+		} finally {
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+
+				}
+			}
+		}
+
+	}
 
 	public static ArrayList<ItemDataBeans> itemcontents(int user_id) throws SQLException {
 
@@ -99,23 +140,34 @@ public class ItemDao {
 			String sql = "SELECT * FROM item"
 					+ " INNER JOIN item_state ON item.item_state = item_state.id"
 					+ " INNER JOIN delivery ON item.delivery = delivery.id"
+					+ " INNER JOIN user ON item.user_id = user.id"
 					+ " WHERE item.id = ?";
 
 			PreparedStatement ps = con.prepareStatement(sql);
 
-			ps.setInt(1,id);
+			ps.setInt(1, id);
 
 			ResultSet rs = ps.executeQuery();
 
-			if(rs.next()) {
+			if (rs.next()) {
 				String photo = rs.getString("photo");
 				String name = rs.getString("name");
-				String isd = rs.getString("item_state")
+				int price = rs.getInt("price");
+				String isd = rs.getString("item_state.detail");
+				String dd = rs.getString("delivery.detail");
+				String detail = rs.getString("detail");
+				String username = rs.getString("user.name");
+				String useraddress = rs.getString("user.address");
+				int user_id = rs.getInt("user_id");
+
+				idb = new ItemDataBeans(photo,name,price,isd,dd,detail,username,useraddress,user_id);
+
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return idb;
 
 	}
 }

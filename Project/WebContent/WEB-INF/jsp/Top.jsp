@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
+	<link rel="stylesheet" href="css/css.css">
 <title>Top</title>
 
 </head>
@@ -20,31 +22,19 @@
 	<br>
 	<div class="container">
 		<div class="card-deck">
+		<c:forEach var="item" items="${itemlist}">
+		<div class="cardsize">
 			<a
-				href="ItemServlet"
-				class="card"> <img class="card-img-top" src=".../100px200/"
-				alt="Card image cap">
+				href="ItemServlet?id=${item.id }" class="card">
+				 <img class="card-img-top" src="${item.photo }"
+				alt="${item.photo }">
 				<div class="card-body">
-					<h5 class="card-title">商品名</h5>
-					<p class="card-text">¥〇〇〇</p>
-				</div>
-			</a> <a
-				href="ItemServlet"
-				class="card"> <img class="card-img-top" src=".../100px200/"
-				alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">商品名</h5>
-					<p class="card-text">¥〇〇〇</p>
-				</div>
-			</a> <a
-				href="ItemServlet"
-				class="card"> <img class="card-img-top" src=".../100px200/"
-				alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">商品名</h5>
-					<p class="card-text">¥〇〇〇</p>
+					<h5 class="card-title">${item.name }</h5>
+					<p class="card-text">¥${item.price }</p>
 				</div>
 			</a>
+			</div>
+			</c:forEach>
 		</div>
 	</div>
 </body>

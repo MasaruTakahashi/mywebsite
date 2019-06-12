@@ -9,7 +9,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
-	<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/css.css">
 <title>Userpage</title>
 </head>
 <body>
@@ -61,17 +61,17 @@
 
 		<div class="card-deck">
 			<c:forEach var="item" items="${itemlist}">
-			<div class="cardsize">
-			<a href="ItemServlet?id=${item.id}">
-				<div class="card">
-					<img class="card-img-top" src="${item.photo}">
-					<div class="card-body">
-							<h5 class="card-title">${item.name}</h5>
-							<p class="card-text">¥${item.price}</p>
+				<div class="cardsize">
+					<div class="card">
+						<a href="ItemServlet?id=${item.id}"> <img class="card-img-top"
+							src="${item.photo}">
+							<div class="card-body">
+								<h5 class="card-title">${item.name}</h5>
+								<p class="card-text">¥${item.price}</p>
+							</div>
+						</a>
 					</div>
 				</div>
-			</a>
-			</div>
 			</c:forEach>
 		</div>
 
