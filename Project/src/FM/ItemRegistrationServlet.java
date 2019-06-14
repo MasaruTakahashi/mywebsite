@@ -78,7 +78,7 @@ public class ItemRegistrationServlet extends HttpServlet {
 
 
 				ItemDao.iteminsert(idb);
-				response.sendRedirect("UserpageServlet?id=${userinfo.id}");
+				response.sendRedirect("UserpageServlet?id=" + user_id);
 
 			}
 

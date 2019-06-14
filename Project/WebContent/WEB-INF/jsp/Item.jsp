@@ -92,7 +92,7 @@
 		<br>
 		<c:if test="${userinfo.id == item.user_id}">
 			<div class="text-right">
-				<a href="#"> 商品を削除 </a>
+				<a href="ItemDeleteServlet?id=${item.id}"> 商品を削除 </a>
 			</div>
 		</c:if>
 		<br> <br>

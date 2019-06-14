@@ -11,3 +11,9 @@
 	width: 380px;
 	height: 300px;
 }
+
+.imgSize {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+}

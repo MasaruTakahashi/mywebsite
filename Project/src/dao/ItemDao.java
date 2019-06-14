@@ -11,7 +11,7 @@ import beans.ItemDataBeans;
 
 public class ItemDao {
 
-	public static List<ItemDataBeans> findall()throws SQLException{
+	public static List<ItemDataBeans> findall() throws SQLException {
 		Connection con = null;
 		List<ItemDataBeans> itemlist = new ArrayList<ItemDataBeans>();
 
@@ -21,17 +21,17 @@ public class ItemDao {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
-					while(rs.next()) {
-						ItemDataBeans idb = new ItemDataBeans();
-						idb.setId(rs.getInt("id"));
-						idb.setPhoto(rs.getString("photo"));
-						idb.setName(rs.getString("name"));
-						idb.setPrice(rs.getInt("price"));
+			while (rs.next()) {
+				ItemDataBeans idb = new ItemDataBeans();
+				idb.setId(rs.getInt("id"));
+				idb.setPhoto(rs.getString("photo"));
+				idb.setName(rs.getString("name"));
+				idb.setPrice(rs.getInt("price"));
 
-						itemlist.add(idb);
-					}
+				itemlist.add(idb);
+			}
 
-					return itemlist;
+			return itemlist;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -150,6 +150,7 @@ public class ItemDao {
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
+				int Id = rs.getInt("id");
 				String photo = rs.getString("photo");
 				String name = rs.getString("name");
 				int price = rs.getInt("price");
@@ -160,7 +161,7 @@ public class ItemDao {
 				String useraddress = rs.getString("user.address");
 				int user_id = rs.getInt("user_id");
 
-				idb = new ItemDataBeans(photo,name,price,isd,dd,detail,username,useraddress,user_id);
+				idb = new ItemDataBeans(Id, photo, name, price, isd, dd, detail, username, useraddress, user_id);
 
 			}
 
@@ -169,5 +170,33 @@ public class ItemDao {
 		}
 		return idb;
 
+	}
+
+	public static void itemdelete(ItemDataBeans idb) throws SQLException {
+		Connection con = null;
+		try {
+			con = DBManager.getConnection();
+			String sql = "DELETE FROM item WHERE id = ?";
+
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setInt(1, idb.getId());
+			ps.executeUpdate();
+
+			System.out.println("itemdeleteOK!");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+
+				}
+			}
+		}
 	}
 }

@@ -63,7 +63,7 @@
 			<c:forEach var="item" items="${itemlist}">
 				<div class="cardsize">
 					<div class="card">
-						<a href="ItemServlet?id=${item.id}"> <img class="card-img-top"
+						<a href="ItemServlet?id=${item.id}"> <img class="card-img-top imgSize"
 							src="${item.photo}">
 							<div class="card-body">
 								<h5 class="card-title">${item.name}</h5>

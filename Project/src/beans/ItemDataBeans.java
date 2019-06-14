@@ -49,8 +49,10 @@ public class ItemDataBeans {
 		this.price = price;
 	}
 
-	public ItemDataBeans(String photo, String name, int price, String item_stateDetail, String deliveryDetail, String detail,
+	public ItemDataBeans(int id, String photo, String name, int price, String item_stateDetail, String deliveryDetail,
+			String detail,
 			String userName, String userAddress, int user_id) {
+		this.id = id;
 		this.photo = photo;
 		this.name = name;
 		this.price = price;
@@ -65,60 +67,79 @@ public class ItemDataBeans {
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getPhoto() {
 		return photo;
 	}
+
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public int getPrice() {
 		return price;
 	}
+
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
 	public int getItem_state() {
 		return item_state;
 	}
+
 	public void setItem_state(int item_state) {
 		this.item_state = item_state;
 	}
+
 	public int getDelivery() {
 		return delivery;
 	}
+
 	public void setDelivery(int delivery) {
 		this.delivery = delivery;
 	}
+
 	public String getDetail() {
 		return detail;
 	}
+
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
+
 	public int getUser_id() {
 		return user_id;
 	}
+
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
+
 	public int getItem_num() {
 		return item_num;
 	}
+
 	public void setItem_num(int item_num) {
 		this.item_num = item_num;
 	}
+
 	public Date getCreate_date() {
 		return create_date;
 	}
+
 	public void setCreate_date(Date create_date) {
 		this.create_date = create_date;
 	}
