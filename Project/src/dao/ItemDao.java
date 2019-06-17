@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.Statement;
+
 import beans.ItemDataBeans;
 
 public class ItemDao {
@@ -48,6 +50,51 @@ public class ItemDao {
 				}
 			}
 		}
+
+	}
+
+	public static List<ItemDataBeans> searchitem(String searchword) throws SQLException{
+		Connection con = null;
+		List<ItemDataBeans> idblist = new ArrayList<ItemDataBeans>();
+		try {
+			con = DBManager.getConnection();
+			String sql = "SELECT * FROM item WHERE name LIKE ? OR detail LIKE ? ORDER BY create_date";
+
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setString(1,"%" + searchword + "%");
+			ps.setString(2,"%" + searchword + "%");
+			ResultSet rs = ps.executeQuery();
+
+
+
+			while (rs.next()) {
+				ItemDataBeans idb = new ItemDataBeans();
+				idb.setId(rs.getInt("id"));
+				idb.setPhoto(rs.getString("photo"));
+				idb.setName(rs.getString("name"));
+				idb.setPrice(rs.getInt("price"));
+
+				idblist.add(idb);
+			}
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+
+		} finally {
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+
+				}
+			}
+		}
+		return idblist;
 
 	}
 
@@ -199,4 +246,18 @@ public class ItemDao {
 			}
 		}
 	}
+
+	public static void update(ItemDataBeans idb)throws SQLException{
+		Connection con = null;
+		try {
+			con = DBManager.getConnection();
+			String sql = "UPDATE user SET";
+
+			Statement stmt =
+
+		} catch (Exception e) {
+
+		}
+	}
+
 }

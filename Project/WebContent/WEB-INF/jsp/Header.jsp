@@ -18,21 +18,22 @@
 <body>
 	<div class="container">
 		<div class="row">
-
 			<a href="TopServlet" class="col-2  header-font"> <i
 				class="fas fa-cube"></i>フリマ
 			</a>
 			<div class="col-10 text-right">
-				<div class="input-group mb-3">
-					<input type="text" class="form-control"
-						aria-describedby="button-addon2">
-					<div class="input-group-append">
-						<button class="btn btn-outline-secondary form-control"
-							type="submit" id="button-addon2">
-							<i class="fas fa-search"></i>
-						</button>
+				<form action="SearchServlet" method="post">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" name="searchword"
+							aria-describedby="button-addon2">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary form-control"
+								type="submit" id="button-addon2">
+								<i class="fas fa-search"></i>
+							</button>
+						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 		<%

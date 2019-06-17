@@ -22,7 +22,7 @@
 			</c:if>
 			<c:if test="${userinfo.id == user.id}">
 				<a class="btn btn-primary"
-					href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/Userupdate.html?"
+					href="UserupdateServlet?id=${userinfo.id }"
 					role="button">変更</a>
 			</c:if>
 		</div>
@@ -59,9 +59,9 @@
 		</c:if>
 		<br> <br>
 
-		<div class="card-deck">
+		<div class="row">
 			<c:forEach var="item" items="${itemlist}">
-				<div class="cardsize">
+				<div class="col-4">
 					<div class="card">
 						<a href="ItemServlet?id=${item.id}"> <img class="card-img-top imgSize"
 							src="${item.photo}">

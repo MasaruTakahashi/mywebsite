@@ -24,16 +24,16 @@
 		<div class="row">
 			<c:forEach var="item" items="${itemlist}">
 				<div class="col-4">
-					<div class="cardsize">
-						<a href="ItemServlet?id=${item.id }" class="card"> <img
-							class="card-img-top imgSize" src="${item.photo }"
-							alt="${item.photo }">
-							<div class="card-body">
-								<h5 class="card-title">${item.name }</h5>
-								<p class="card-text">¥${item.price }</p>
-							</div>
-						</a>
-					</div>
+
+					<a href="ItemServlet?id=${item.id }" class="card"> <img
+						class="card-img-top imgSize" src="${item.photo }"
+						alt="${item.photo }">
+						<div class="card-body">
+							<h5 class="card-title">${item.name }</h5>
+							<p class="card-text">¥${item.price }</p>
+						</div>
+					</a>
+
 				</div>
 			</c:forEach>
 		</div>
