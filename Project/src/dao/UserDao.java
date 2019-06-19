@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.xml.bind.DatatypeConverter;
 
@@ -181,6 +182,47 @@ public class UserDao {
 		return udb;
 	}
 
+	public static void update(String pass, String name, String address, String detail, int id) throws SQLException{
+		Connection con = null;
+		try {
+			con = DBManager.getConnection();
+			String sql = "UPDATE user SET";
+
+			String password = md5(pass);
+
+			if(!pass.equals("")) {
+				sql +=" password = '"+ password + "'";
+			}
+			if(!name.equals("")) {
+				sql +=" name = '" + name + "'";
+			}
+			if(!address.equals("")) {
+				sql += " address = '" + address + "'";
+			}
+			if(!detail.equals("")) {
+				sql += " detail = '" + detail + "'";
+			}
+			sql += " WHERE id = '" + id + "'";
+
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate(sql);
+			System.out.println("userupdateOK!");
+
+		 } catch (SQLException e) {
+				e.printStackTrace();
+
+			} finally {
+
+				if (con != null) {
+					try {
+						con.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+
+					}
+				}
+			}
+		}
 
 	 public static String md5(String password){
 			//ハッシュを生成したい元の文字列

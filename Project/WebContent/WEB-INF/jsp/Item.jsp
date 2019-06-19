@@ -23,7 +23,7 @@
 	<div class="container">
 		<c:if test="${userinfo.id == item.user_id}">
 			<div class="text-right">
-				<a class="btn btn-primary" href="#" role="button">変更</a>
+				<a class="btn btn-primary" href="ItemupdateServlet?id=${item.id }" role="button">変更</a>
 			</div>
 		</c:if>
 
@@ -38,7 +38,7 @@
 					<tbody>
 						<tr>
 							<th>出品者</th>
-							<td>${item.userName}</td>
+							<td><a href="UserpageServlet?id=${item.user_id }">${item.userName}</a></td>
 						</tr>
 						<tr>
 							<th>商品の状態</th>

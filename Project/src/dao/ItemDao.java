@@ -4,10 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.mysql.jdbc.Statement;
 
 import beans.ItemDataBeans;
 
@@ -247,17 +246,50 @@ public class ItemDao {
 		}
 	}
 
-	public static void update(ItemDataBeans idb)throws SQLException{
+	public static void update(int id, String photo, String name, int price, int item_state, int delivery, String detail)throws SQLException{
 		Connection con = null;
 		try {
 			con = DBManager.getConnection();
-			String sql = "UPDATE user SET";
+			String sql = "UPDATE item SET";
 
-			Statement stmt =
+			if(!photo.equals("")) {
+				sql += " photo='img\\" + photo + "'";
+			}
+			if(!name.equals("")) {
+				sql += " name='" + name + "'";
+			}
+			if(price!=0) {
+				sql += " price='" + price + "'";
+			}
+			if(item_state!=0) {
+				sql += " item_state='" + item_state +"'";
+			}
+			if(delivery!=0) {
+				sql += " delivery='" + delivery + "'";
+			}
+			if(!detail.equals("")) {
+				sql += " detail='" + detail + "'";
+			}
+			sql += " WHERE id='" + id + "'";
+
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate(sql);
+
+			System.out.println("itemupdateOK!");
+
 
 		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
 
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+
+				}
+			}
 		}
 	}
-
 }

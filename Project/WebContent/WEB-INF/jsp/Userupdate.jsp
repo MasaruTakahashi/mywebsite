@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,11 @@
 	<br>
 	<br>
 	<div class="container">
+	<c:if test="${errMsg != null}">
+			<div class="alert alert-danger" role="alert">${errMsg}</div>
+		</c:if>
 		<form action="UserupdateServlet" method="post">
+		<input type="hidden" name="id" value="${userinfo.id}">
 			<div class="form-group">
 				<div class="row">
 					<div class="col"></div>
@@ -61,7 +66,7 @@
 					<div class="col"></div>
 					<div class="col-10">
 						<label for="comment">コメント</label>
-						<textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+						<textarea class="form-control" id="comment" name="detail" rows="3"></textarea>
 					</div>
 					<div class="col"></div>
 				</div>
