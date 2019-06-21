@@ -2,28 +2,28 @@ package FM;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import beans.ItemDataBeans;
-import dao.ItemDao;
+import beans.Item_commentBeans;
+import dao.item_commentDao;
 
 /**
- * Servlet implementation class SearchServlet
+ * Servlet implementation class CommentServlet
  */
-@WebServlet("/SearchServlet")
-public class SearchServlet extends HttpServlet {
+@WebServlet("/CommentServlet")
+public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public SearchServlet() {
+	public CommentServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -43,33 +43,32 @@ public class SearchServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		Boolean logincheck = (Boolean) session.getAttribute("isLogin");
+		if (logincheck == null) {
+			response.sendRedirect("LoginServlet");
+		} else {
 
-		String searchword = request.getParameter("searchword");
+			String item_id = request.getParameter("item_id");
+			String user_id = request.getParameter("user_id");
+			String detail = request.getParameter("detail");
 
-		if (searchword.equals("")) {
+			Item_commentBeans icb = new Item_commentBeans();
+			icb.setItem_id(Integer.parseInt(item_id));
+			icb.setUser_id(Integer.parseInt(user_id));
+			icb.setDetail(detail);
+
 			try {
-				List<ItemDataBeans> idb = ItemDao.findall();
-				request.setAttribute("itemlist", idb);
-				request.getRequestDispatcher("/WEB-INF/jsp/Top.jsp").forward(request, response);
+				if (detail.equals("")) {
+					response.sendRedirect("ItemServlet" + "?id=" + item_id);
+				} else {
+					item_commentDao.insert(icb);
+					response.sendRedirect("ItemServlet" + "?id=" + item_id);
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}else {
-
-		try {
-			List<ItemDataBeans> idb = ItemDao.searchitem(searchword);
-
-			if (idb.isEmpty()) {
-				request.getRequestDispatcher("/WEB-INF/jsp/Nosearch.jsp").forward(request, response);
-			}
-
-			request.setAttribute("itemlist", idb);
-			request.getRequestDispatcher("/WEB-INF/jsp/Top.jsp").forward(request, response);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
-	}
 	}
 
 }

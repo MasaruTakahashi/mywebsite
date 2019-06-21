@@ -32,7 +32,7 @@ public class LogoutServlet extends HttpServlet {
 		session.removeAttribute("isLogin");
 		session.removeAttribute("userinfo");
 
-		request.getRequestDispatcher("/WEB-INF/jsp/Top.jsp").forward(request, response);
+		response.sendRedirect("TopServlet");
 		System.out.println("logoutOK!");
 	}
 

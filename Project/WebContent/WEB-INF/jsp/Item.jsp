@@ -60,35 +60,48 @@
 		<a class="btn btn-danger btn-block btn-lg" href="#" role="button">購入画面に進む</a>
 		<br>
 		<p class="text-center">${item.detail }</p>
-		<a class="btn btn-outline-danger btn-sm" href="#" role="button"><i
-			class="far fa-heart"></i>0</a> <a class="btn btn-outline-info btn-sm"
-			href="#" role="button">通報する</a> <br> <br>
+		<form action="GoodServlet" method="post">
+		<input type="hidden" name="user_id" value="${userinfo.id }">
+		<input type="hidden" name="item_id" value="${item.id}">
+		<button class="btn btn-outline-danger btn-sm" type="submit" role="button"><i
+			class="far fa-heart"></i>0</button>
+			</form>
+			 <button class="btn btn-outline-info btn-sm"
+			type="submit" role="button">通報する</button> <br> <br>
+			<c:if test="${isEmpty != null}">
+			<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" class="text-center">${isEmpty}</th>
+    </tr>
+  </thead>
+  </table>
+			</c:if>
+			<c:if test="${isEmpty == null}">
 		<div class="scroll">
 			<table class="table">
 				<thead>
 				<tbody>
+				<c:forEach var="comment" items="${commentlist}">
 					<tr>
-						<th scope="row">ユーザー名</th>
-						<td>コメント</td>
-						<td>投稿時間</td>
+						<th scope="row">${comment.userName }</th>
+						<td class="text-center">${comment.detail }</td>
+						<td class="text-right">${comment.create_date }</td>
 					</tr>
-					<tr>
-						<th scope="row">ユーザー名</th>
-						<td>コメント</td>
-						<td>投稿時間</td>
-					</tr>
-					<tr>
-						<th scope="row">ユーザー名</th>
-						<td>コメント</td>
-						<td>投稿時間</td>
-					</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
-		<br> <label for="comment">コメント</label>
-		<textarea class="form-control" id="comment" rows="3"></textarea>
+		</c:if>
+		<br>
+		<form action="CommentServlet" method="post">
+		<input type="hidden" name="item_id" value="${item.id }">
+		<input type="hidden" name="user_id" value="${userinfo.id }">
+		<label for="comment">コメント</label>
+		<textarea class="form-control" id="comment" name="detail" rows="3"></textarea>
 		<br>
 		<button type="submit" class="btn-block">コメントする</button>
+		</form>
 		<br>
 		<c:if test="${userinfo.id == item.user_id}">
 			<div class="text-right">

@@ -18,7 +18,9 @@
 <body>
 	<div class="container">
 		<h1 class="text-center">
+			<a href="TopServlet">
 			<i class="fas fa-cube"></i>フリマ
+			</a>
 		</h1>
 		<br> <br>
 		<c:if test="${errMsg != null}">

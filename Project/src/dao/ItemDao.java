@@ -253,7 +253,7 @@ public class ItemDao {
 			String sql = "UPDATE item SET";
 
 			if(!photo.equals("")) {
-				sql += " photo='img\\" + photo + "'";
+				sql += " photo='img\\\\" + photo + "'";
 			}
 			if(!name.equals("")) {
 				sql += " name='" + name + "'";
