@@ -47,7 +47,7 @@
 			<div class="col-8"></div>
 			<div class="col-4 text-right">
 				<a class="btn btn-outline-danger"
-					href="file:///C:/Users/LIKEIT_STUDENT.DESKTOP-QQASV86.000/Documents/mywenbsite/Mock/GoodList.html"
+					href="GoodListServlet?id=${userinfo.id}"
 					role="button">いいね<i class="far fa-heart"></i></a> <a
 					class="btn btn-outline-warning"
 					href="UserpageServlet?id=${userinfo.id}" role="button">マイページ</a> <a

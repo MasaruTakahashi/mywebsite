@@ -224,6 +224,47 @@ public class UserDao {
 			}
 		}
 
+	public static void userbad(UserDataBeans udb)throws SQLException{
+		Connection con = null;
+		try {
+			con = DBManager.getConnection();
+			String sql1 = "SELECT bad FROM user WHERE id = ?";
+			PreparedStatement ps1 = con.prepareStatement(sql1);
+
+			ps1.setInt(1, udb.getId());
+
+			ResultSet rs = ps1.executeQuery();
+			if(!rs.next()) {
+			 udb.setBad(0);
+			}else {
+			udb.setBad(rs.getInt("bad"));
+			}
+
+			 String sql = "UPDATE user SET bad = ? WHERE id = ?";
+			 PreparedStatement ps = con.prepareStatement(sql);
+			 int bad = udb.getBad();
+			 ps.setInt(1,bad += 1);
+			 ps.setInt(2, udb.getId());
+
+			 ps.executeUpdate();
+			 System.out.println("badinsertOK!!");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+
+				}
+			}
+		}
+	}
+
 	 public static String md5(String password){
 			//ハッシュを生成したい元の文字列
 			 String source = password;

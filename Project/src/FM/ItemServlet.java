@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.GoodDataBeans;
 import beans.ItemDataBeans;
 import beans.Item_commentBeans;
+import dao.GoodDao;
 import dao.ItemDao;
 import dao.item_commentDao;
 
@@ -49,6 +51,9 @@ public class ItemServlet extends HttpServlet {
 			}else {
 			request.setAttribute("commentlist", icb);
 			}
+			GoodDataBeans gdb = GoodDao.goodcount(Integer.parseInt(Id));
+			request.setAttribute("good", gdb);
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Item.jsp");
 			dispatcher.forward(request, response);
 		} catch (NumberFormatException | SQLException e) {

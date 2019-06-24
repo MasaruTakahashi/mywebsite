@@ -14,6 +14,9 @@ public class UserDataBeans implements Serializable {
 	private int bad;
 	private String detail;
 
+	private int usepoint;
+	private int totalprice;
+
 	public UserDataBeans() {
 
 	}
@@ -106,6 +109,22 @@ public class UserDataBeans implements Serializable {
 
 	public void setDetail(String detail) {
 		this.detail = detail;
+	}
+
+	public int getUsepoint() {
+		return usepoint;
+	}
+
+	public void setUsepoint(int usepoint) {
+		this.usepoint = usepoint;
+	}
+
+	public int getTotalprice() {
+		return totalprice;
+	}
+
+	public void setTotalprice(int totalprice) {
+		this.totalprice = totalprice;
 	}
 
 }

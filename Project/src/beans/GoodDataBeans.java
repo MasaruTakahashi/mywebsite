@@ -9,6 +9,21 @@ public class GoodDataBeans {
 	private String itemName;
 	private int itemPrice;
 
+	private int count;
+
+
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public GoodDataBeans(int item_id, int user_id) {
+		this.item_id = item_id;
+		this.user_id = user_id;
+	}
+	public GoodDataBeans() {
+	}
 
 	public String getItemPhoto() {
 		return itemPhoto;
