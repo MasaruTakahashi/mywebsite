@@ -51,7 +51,7 @@ public class ItemDataBeans {
 
 	public ItemDataBeans(int id, String photo, String name, int price, String item_stateDetail, String deliveryDetail,
 			String detail,
-			String userName, String userAddress, int user_id) {
+			String userName, String userAddress, int user_id, int item_num) {
 		this.id = id;
 		this.photo = photo;
 		this.name = name;
@@ -62,6 +62,7 @@ public class ItemDataBeans {
 		this.userName = userName;
 		this.userAddress = userAddress;
 		this.user_id = user_id;
+		this.item_num = item_num;
 	}
 
 	public int getId() {

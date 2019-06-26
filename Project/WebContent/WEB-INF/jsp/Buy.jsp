@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,13 +29,14 @@
 		<p class="text-center">${user.point}</p>
 
 		<form action="UsepointServlet" method="post">
-		<input type="hidden" name="item_id" value="${item.id}">
-		<input type="hidden" name="user_id" value="${user.id}">
+			<input type="hidden" name="item_id" value="${item.id}"> <input
+				type="hidden" name="user_id" value="${user.id}">
 			<div class="row">
 				<div class="col"></div>
 				<div class="col-5">
 					<label for="exampleInputEmail1">ポイント</label> <input type="text"
-						class="form-control" id="point" name="usepoint" placeholder="使用ポイント数"> <br>
+						class="form-control" id="point" name="usepoint"
+						placeholder="使用ポイント数"> <br>
 					<div class="text-center">
 						<button type="submit" class="btn btn-primary">ポイントを使う</button>
 					</div>
@@ -62,12 +63,19 @@
 			</tbody>
 		</table>
 
-
-		<div class="text-center">
-			<button type="submit" class="btn btn-danger">購入確定</button>
-		</div>
-		<div class="col"></div>
-
+		<form action="BuyConfirmServlet" method="post">
+		<input type="hidden" name="point" value="${user.point}">
+		<input type="hidden" name="usepoint" value="${user.usepoint}">
+		<input type="hidden" name="SellUser_id" value="${item.user_id}">
+		<input type="hidden" name="BuyUser_id" value="${userinfo.id}">
+		<input type="hidden" name="item_num" value="2">
+		<input type="hidden" name="item_id" value="${item.id}">
+		<input type="hidden" name="price" value="${item.price}">
+			<div class="text-center">
+				<button type="submit" class="btn btn-danger">購入確定</button>
+			</div>
+			<div class="col"></div>
+		</form>
 	</div>
 </body>
 </html>

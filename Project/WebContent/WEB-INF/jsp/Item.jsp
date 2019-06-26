@@ -21,7 +21,7 @@
 	<br>
 	<br>
 	<div class="container">
-		<c:if test="${userinfo.id == item.user_id}">
+		<c:if test="${userinfo.id == item.user_id || userinfo.id == 1}">
 			<div class="text-right">
 				<a class="btn btn-primary" href="ItemupdateServlet?id=${item.id }"
 					role="button">変更</a>
@@ -58,11 +58,18 @@
 			</div>
 		</div>
 		<h1 class="text-center">¥${item.price }</h1>
-		<form action="BuyServlet" method="post">
-		<input type="hidden" name="item_id" value="${item.id}">
-		<input type="hidden" name="user_id" value="${userinfo.id}">
-		<button class="btn btn-danger btn-block btn-lg" type="submit" role="button">購入画面に進む</button>
-		</form>
+		<c:if test="${item.item_num == 1}">
+			<form action="BuyServlet" method="post">
+				<input type="hidden" name="item_id" value="${item.id}"> <input
+					type="hidden" name="user_id" value="${userinfo.id}">
+				<button class="btn btn-danger btn-block btn-lg" type="submit"
+					role="button">購入画面に進む</button>
+			</form>
+		</c:if>
+		<c:if test="${item.item_num == 2}">
+			<button class="btn btn-danger btn-block btn-lg" role="button">売り切れ</button>
+		</c:if>
+
 		<br>
 		<p class="text-center">${item.detail }</p>
 		<c:if test="${item.user_id != userinfo.id}">
@@ -79,10 +86,11 @@
 				<i class="far fa-heart"></i>${good.count}</button>
 		</c:if>
 		<c:if test="${item.user_id != userinfo.id}">
-		<form action="BadServlet" method="post">
-		<input type="hidden" name="id" value="${item.user_id }">
-		<input type="hidden" name="item_id" value="${item.id }">
-			<button class="btn btn-outline-info btn-sm" type="submit" role="button">通報する</button>
+			<form action="BadServlet" method="post">
+				<input type="hidden" name="id" value="${item.user_id }"> <input
+					type="hidden" name="item_id" value="${item.id }">
+				<button class="btn btn-outline-info btn-sm" type="submit"
+					role="button">通報する</button>
 			</form>
 		</c:if>
 		<c:if test="${item.user_id == userinfo.id}">
@@ -125,7 +133,7 @@
 			<button type="submit" class="btn-block">コメントする</button>
 		</form>
 		<br>
-		<c:if test="${userinfo.id == item.user_id}">
+		<c:if test="${userinfo.id == item.user_id || userinfo.id == 1}">
 			<div class="text-right">
 				<a href="ItemDeleteServlet?id=${item.id}"> 商品を削除 </a>
 			</div>

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.GoodDataBeans;
 import dao.GoodDao;
@@ -42,25 +43,32 @@ public class GoodServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String item_id = request.getParameter("item_id");
-		String user_id = request.getParameter("user_id");
 
-		GoodDataBeans gdb = new GoodDataBeans();
-		gdb.setItem_id(Integer.parseInt(item_id));
-		gdb.setUser_id(Integer.parseInt(user_id));
+		HttpSession session = request.getSession();
+		Boolean isLogin = (Boolean) session.getAttribute("isLogin");
+		if (isLogin == null) {
+			response.sendRedirect("LoginServlet");
+		} else {
 
-		try {
-			if (GoodDao.goodcheck(Integer.parseInt(item_id), Integer.parseInt(user_id)) == null) {
-				GoodDao.goodinsert(gdb);
-			} else {
-				GoodDao.gooddelete(gdb);
+			String item_id = request.getParameter("item_id");
+			String user_id = request.getParameter("user_id");
+
+			GoodDataBeans gdb = new GoodDataBeans();
+			gdb.setItem_id(Integer.parseInt(item_id));
+			gdb.setUser_id(Integer.parseInt(user_id));
+
+			try {
+				if (GoodDao.goodcheck(Integer.parseInt(item_id), Integer.parseInt(user_id)) == null) {
+					GoodDao.goodinsert(gdb);
+				} else {
+					GoodDao.gooddelete(gdb);
+				}
+
+				response.sendRedirect("ItemServlet" + "?id=" + item_id);
+
+			} catch (NumberFormatException | SQLException e) {
+				e.printStackTrace();
 			}
-
-			response.sendRedirect("ItemServlet" + "?id=" + item_id);
-
-		} catch (NumberFormatException | SQLException e) {
-			e.printStackTrace();
 		}
 	}
-
 }

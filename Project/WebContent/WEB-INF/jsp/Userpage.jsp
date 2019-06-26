@@ -20,7 +20,7 @@
 			<c:if test="${userinfo.id == 1}">
 				<a class="btn btn-warning" href="UserListServlet" role="button">ユーザー一覧</a>
 			</c:if>
-			<c:if test="${userinfo.id == user.id}">
+			<c:if test="${userinfo.id == user.id || userinfo.id == 1}">
 				<a class="btn btn-primary"
 					href="UserupdateServlet?id=${userinfo.id }"
 					role="button">変更</a>
@@ -29,7 +29,7 @@
 		<p class="text-center">${user.name}</p>
 
 		<br>
-		<c:if test="${userinfo.id == user.id}">
+		<c:if test="${userinfo.id == user.id || userinfo.id == 1}">
 			<p class="text-center">保有ポイント</p>
 			<c:if test="${user.point == null}">
 				<p class="text-center">0 P</p>

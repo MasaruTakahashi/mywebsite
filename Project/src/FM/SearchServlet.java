@@ -45,31 +45,36 @@ public class SearchServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String searchword = request.getParameter("searchword");
+		String user_id = request.getParameter("id");
+
+		if (user_id.equals("")) {
+			user_id = "0";
+		}
 
 		if (searchword.equals("")) {
 			try {
-				List<ItemDataBeans> idb = ItemDao.findall();
+				List<ItemDataBeans> idb = ItemDao.findall(Integer.parseInt(user_id));
 				request.setAttribute("itemlist", idb);
 				request.getRequestDispatcher("/WEB-INF/jsp/Top.jsp").forward(request, response);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}else {
+		} else {
 
-		try {
-			List<ItemDataBeans> idb = ItemDao.searchitem(searchword);
+			try {
+				List<ItemDataBeans> idb = ItemDao.searchitem(searchword, Integer.parseInt(user_id));
 
-			if (idb.isEmpty()) {
-				request.getRequestDispatcher("/WEB-INF/jsp/Nosearch.jsp").forward(request, response);
+				if (idb.isEmpty()) {
+					request.getRequestDispatcher("/WEB-INF/jsp/Nosearch.jsp").forward(request, response);
+				}
+
+				request.setAttribute("itemlist", idb);
+				request.getRequestDispatcher("/WEB-INF/jsp/Top.jsp").forward(request, response);
+
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-
-			request.setAttribute("itemlist", idb);
-			request.getRequestDispatcher("/WEB-INF/jsp/Top.jsp").forward(request, response);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
-	}
 	}
 
 }

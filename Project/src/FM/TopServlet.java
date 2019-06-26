@@ -9,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.ItemDataBeans;
+import beans.UserDataBeans;
 import dao.ItemDao;
 
 /**
@@ -33,8 +35,17 @@ public class TopServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		UserDataBeans udb = (UserDataBeans) session.getAttribute("userinfo");
+
+		if (udb == null) {
+			udb = new UserDataBeans();
+			udb.setId(0);
+		}
+
 		try {
-			List<ItemDataBeans> idb = ItemDao.findall();
+			List<ItemDataBeans> idb = ItemDao.findall(udb.getId());
 			request.setAttribute("itemlist", idb);
 			request.getRequestDispatcher("/WEB-INF/jsp/Top.jsp").forward(request, response);
 		} catch (SQLException e) {

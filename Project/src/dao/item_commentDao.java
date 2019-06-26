@@ -41,12 +41,15 @@ public class item_commentDao {
 		}
 	}
 
-	public static List<Item_commentBeans> getcomment(int item_id)throws SQLException{
+	public static List<Item_commentBeans> getcomment(int item_id) throws SQLException {
 		Connection con = null;
 		List<Item_commentBeans> icblist = new ArrayList<Item_commentBeans>();
 		try {
 			con = DBManager.getConnection();
-			String sql = "SELECT * FROM item_comment INNER JOIN user ON item_comment.user_id = user.id WHERE item_id = ?";
+			String sql = "SELECT * FROM item_comment"
+					+ " INNER JOIN user ON item_comment.user_id = user.id "
+					+ "WHERE item_id = ? "
+					+ "ORDER BY item_comment.create_date DESC";
 
 			PreparedStatement ps = con.prepareStatement(sql);
 

@@ -23,6 +23,7 @@
 			</a>
 			<div class="col-10 text-right">
 				<form action="SearchServlet" method="post">
+				<input type="hidden" name="id" value="${userinfo.id}">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" name="searchword"
 							aria-describedby="button-addon2">

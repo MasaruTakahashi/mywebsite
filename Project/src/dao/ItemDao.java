@@ -12,14 +12,17 @@ import beans.ItemDataBeans;
 
 public class ItemDao {
 
-	public static List<ItemDataBeans> findall() throws SQLException {
+	public static List<ItemDataBeans> findall(int user_id) throws SQLException {
 		Connection con = null;
 		List<ItemDataBeans> itemlist = new ArrayList<ItemDataBeans>();
 
 		try {
 			con = DBManager.getConnection();
-			String sql = "SELECT * FROM item";
+			String sql = "SELECT * FROM item WHERE user_id <> ?";
 			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setInt(1, user_id);
+
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -52,17 +55,18 @@ public class ItemDao {
 
 	}
 
-	public static List<ItemDataBeans> searchitem(String searchword) throws SQLException{
+	public static List<ItemDataBeans> searchitem(String searchword, int user_id) throws SQLException{
 		Connection con = null;
 		List<ItemDataBeans> idblist = new ArrayList<ItemDataBeans>();
 		try {
 			con = DBManager.getConnection();
-			String sql = "SELECT * FROM item WHERE name LIKE ? OR detail LIKE ? ORDER BY create_date";
+			String sql = "SELECT * FROM item WHERE name LIKE ? OR detail LIKE ?  AND user_id <> ? ORDER BY create_date";
 
 			PreparedStatement ps = con.prepareStatement(sql);
 
 			ps.setString(1,"%" + searchword + "%");
 			ps.setString(2,"%" + searchword + "%");
+			ps.setInt(3, user_id);
 			ResultSet rs = ps.executeQuery();
 
 
@@ -206,8 +210,9 @@ public class ItemDao {
 				String username = rs.getString("user.name");
 				String useraddress = rs.getString("user.address");
 				int user_id = rs.getInt("user_id");
+				int item_num = rs.getInt("item_num");
 
-				idb = new ItemDataBeans(Id, photo, name, price, isd, dd, detail, username, useraddress, user_id);
+				idb = new ItemDataBeans(Id, photo, name, price, isd, dd, detail, username, useraddress, user_id,item_num);
 
 			}
 
@@ -292,4 +297,33 @@ public class ItemDao {
 			}
 		}
 	}
+
+	public static void itembuy(ItemDataBeans idb)throws SQLException{
+		Connection con = null;
+		try {
+			con = DBManager.getConnection();
+			String sql = "UPDATE item SET item_num = ? WHERE id = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setInt(1, idb.getItem_num());
+			ps.setInt(2, idb.getId());
+
+			ps.executeUpdate();
+			System.out.println("itembuyOK!!");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+
+				}
+			}
+		}
+	}
+
 }

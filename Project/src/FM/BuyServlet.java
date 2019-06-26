@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.ItemDataBeans;
 import beans.UserDataBeans;
@@ -43,6 +44,13 @@ public class BuyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+
+		HttpSession session = request.getSession();
+		Boolean isLogin = (Boolean) session.getAttribute("isLogin");
+		if(isLogin == null) {
+			response.sendRedirect("LoginServlet");
+		}else {
+
 		String user_id = request.getParameter("user_id");
 		String item_id = request.getParameter("item_id");
 
@@ -65,5 +73,5 @@ public class BuyServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
+	}
 }

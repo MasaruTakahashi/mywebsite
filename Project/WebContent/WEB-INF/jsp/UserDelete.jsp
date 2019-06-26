@@ -11,19 +11,23 @@
 <title>UserDelete</title>
 </head>
 <body>
-	<jsp:include page="/mywenbsite_Mock/Header.jsp" />ヘッダーが入る
+	<jsp:include page="/WEB-INF/jsp/Header.jsp" />
 	<br>
 	<br>
 	<div class="container">
 		<h1 class="text-center">ユーザー削除</h1>
-		<p class="text-center">ユーザー名</p>
-		<div class="row">
-			<div class="col"></div>
-			<div class="col-4">
-				<a class="btn btn-outline-danger btn-block" href="#" role="button">削除</a>
+		<p class="text-center">${user.name}</p>
+		<form action="UserDeleteServlet" method="post">
+			<div class="row">
+				<div class="col"></div>
+				<div class="col-4">
+					<input type="hidden" name="id" value="${user.id}">
+					<button type="submit" class="btn btn-outline-danger btn-block"
+						role="button">削除</button>
+				</div>
+				<div class="col"></div>
 			</div>
-			<div class="col"></div>
-		</div>
+		</form>
 	</div>
 
 </body>
